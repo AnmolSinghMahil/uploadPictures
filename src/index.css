@@ -89,11 +89,19 @@ label:hover {
 }
 .img-wrap img {
   min-width: 100%;
-  min-height: 100%;
-  max-width: 150%;
+  height: 90%;
   position: absolute;
   top: 0;
   left: 0;
 }
 
+#trash {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+#trash:hover {
+  cursor: pointer;
+  color: #f00;
+}
 /* modal styles */
