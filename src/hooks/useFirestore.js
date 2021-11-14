@@ -1,18 +1,22 @@
-import { useState, useEffect } from "react";
-// import { projectFirestore } from "../firebase/config";
+import { useState, useEffect, useContext } from "react";
 import {
   onSnapshot,
   orderBy,
   collection,
   getFirestore,
 } from "firebase/firestore";
+import { LoginContext } from "../Contexts/LoginContext";
 
 const useFirestore = (images) => {
-  const [docs, setDocs] = useState([]);
+  const { user } = useContext(LoginContext);
+
   const db = getFirestore();
-  const q = collection(db, "images");
+  const [docs, setDocs] = useState([]);
+
+  const collectionRef = collection(db, "users", user.uid, "images");
+
   useEffect(() => {
-    const unsub = onSnapshot(q, (snap) => {
+    const unsub = onSnapshot(collectionRef, (snap) => {
       let documents = [];
       snap.forEach((doc) => {
         documents.push({ ...doc.data(), id: doc.id });
@@ -21,6 +25,7 @@ const useFirestore = (images) => {
     });
 
     return () => unsub();
+    // }
   }, [images]);
 
   return { docs };

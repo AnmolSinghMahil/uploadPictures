@@ -105,3 +105,12 @@ label:hover {
   color: #f00;
 }
 /* modal styles */
+
+/* Header */
+.header {
+  background-color: darkgreen;
+  padding: 5px;
+}
+.header a {
+  color: black;
+}
